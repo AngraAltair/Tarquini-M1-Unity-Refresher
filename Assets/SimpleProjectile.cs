@@ -2,12 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Minimal projectile that integrates v = u + a * t manually (no Rigidbody required).
-/// - public List of forces (forceVectorList) and AddForce to push forces in
-/// - sums forces each FixedUpdate; if net force != 0 logs an error (per exercise request)
-/// - otherwise integrates velocity and updates transform.position using v * dt
-/// </summary>
 public class SimpleProjectile : MonoBehaviour
 {
     public Vector3 velocity = Vector3.zero;
