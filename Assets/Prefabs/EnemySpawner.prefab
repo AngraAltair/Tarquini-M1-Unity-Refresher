@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0fe7f625167fc94b9f0e48d830ea673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyWaveCount: 1
+  enemyTotalWaves: 3
   enemiesPerWave: 3
   enemyPrefab: {fileID: 1084841977585053356, guid: f37b6c874d4b9564b81d6706ffa85cec,
     type: 3}

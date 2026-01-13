@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    public int enemyWaveCount;
+    public int enemyTotalWaves;
     public int enemiesPerWave;
     public GameObject enemyPrefab;
+    public Transform enemyParent;
     private List<GameObject> enemies;
     private int enemyWave;
 
@@ -20,6 +21,7 @@ public class SpawnEnemy : MonoBehaviour
     void Start()
     {
         enemyWave = 1;
+        enemies = new List<GameObject>();
         spawnerPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         
         SpawnEnemies();
@@ -28,14 +30,18 @@ public class SpawnEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (enemies.Count == 0 && enemyWave != enemyTotalWaves)
+        {
+            Debug.Log("Wave finished. Spawning more enemies.");
+        }
     }
 
     void SpawnEnemies()
     {
         for (int i = 0; i < enemiesPerWave; i++)
         {
-            Instantiate(enemyPrefab, new Vector3(Random.Range(minX, maxX),1,Random.Range(spawnerPosition.z, maxZ)),transform.rotation);
+            GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(Random.Range(minX, maxX),1,Random.Range(spawnerPosition.z, maxZ)),transform.rotation, enemyParent);
+            enemies.Add(newEnemy);
             Debug.Log("Spawned enemy");
         }
     }
