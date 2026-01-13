@@ -61,50 +61,14 @@ public class PlayerMovement : MonoBehaviour
             Vector2 movementInput = playerInput.Player.Move.ReadValue<Vector2>();
 
             Vector3 moveDirection = Vector3.zero;
-            // if (cameraTransform != null)
-            // {
-            //     Vector3 forward = cameraTransform.forward;
-            //     Vector3 right = cameraTransform.right;
 
-            //     // Ignore vertical component
-            //     forward.y = 0f;
-            //     right.y = 0f;
-            //     forward.Normalize();
-            //     right.Normalize();
-
-            //     moveDirection = (right * movementInput.x + forward * movementInput.y).normalized;
-            // }
-            // else
-            // {
             moveDirection = new Vector3(movementInput.x, 0, movementInput.y).normalized;
-            // }
 
             if (playerInput.Player.Move.IsPressed())
             {
                 Vector3 movement = moveDirection * playerSpeed * Time.deltaTime;
                 rb.MovePosition(transform.position + movement);
             }
-
-            // if (groundCheck && jumpPerformed)
-            // {
-            //     rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            //     jumpPerformed = false;
-            // }
-
-            // if (groundCheck && playerInput.Player.Sprint.IsPressed())
-            // {
-            //     playerSpeed = 12f;
-            // }
-            // else
-            // {
-            //     playerSpeed = 8f;
-            // }
         }
     }
-
-    // void OnJumpPerformed(InputAction.CallbackContext context)
-    // {
-    //     Debug.Log("Jumped");
-    //     jumpPerformed = true;
-    // }
 }
