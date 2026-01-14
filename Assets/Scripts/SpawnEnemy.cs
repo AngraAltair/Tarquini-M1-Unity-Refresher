@@ -14,8 +14,11 @@ public class SpawnEnemy : MonoBehaviour
     public float minX;
     public float maxX;
     public float maxZ;
+
     // public float minY;
     private Vector3 spawnerPosition;
+
+    private Coroutine spawnCoroutine;
     // Spawn enemies in waves. A wave will have a certain amount of enemies; when all enemies in a wave are defeated, move to the next wave
     // Start is called before the first frame update
     void Start()
@@ -24,7 +27,7 @@ public class SpawnEnemy : MonoBehaviour
         enemies = new List<GameObject>();
         spawnerPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
-        StartCoroutine(SpawnEnemyWaves());
+        spawnCoroutine = StartCoroutine(SpawnEnemyWaves());
         // SpawnEnemies();
     }
 
@@ -35,6 +38,12 @@ public class SpawnEnemy : MonoBehaviour
         // {
         //     Debug.Log("Wave finished. Spawning more enemies.");
         // }
+        
+        if (enemyWave > enemyTotalWaves && enemies.Count == 0)
+        {
+            StopCoroutine(spawnCoroutine);
+            Debug.Log("All enemy waves completed. Spawn coroutine stopped.");
+        }
     }
 
     void SpawnEnemies()
