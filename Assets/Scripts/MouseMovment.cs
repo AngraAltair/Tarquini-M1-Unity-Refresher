@@ -31,7 +31,7 @@ public class MouseMovement : MonoBehaviour
         YRotation += mouseX;
         // ZRotation += mouseZ;
 
-        transform.localRotation = Quaternion.Euler(xRotation, YRotation, 0f);
+        transform.localRotation = Quaternion.Euler(0f, YRotation, 0f);
     }
 
     // Add this method below Update()
@@ -40,6 +40,6 @@ public class MouseMovement : MonoBehaviour
         xRotation = x;
         YRotation = y;
         // ZRotation = z;
-        transform.localRotation = Quaternion.Euler(xRotation, YRotation, 0f);
+        transform.localRotation = Quaternion.Euler(0f, YRotation, 0f);
     }
 }

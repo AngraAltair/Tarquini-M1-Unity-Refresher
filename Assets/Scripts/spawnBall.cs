@@ -4,6 +4,7 @@ using UnityEngine;
 public class spawnBall : MonoBehaviour
 {
     public GameObject projectileSource;
+    public Transform projectileParent;
     public Vector3 initialVelocity = new Vector3(0, 0, 10f);
 
     private GameObject prototype;
@@ -54,7 +55,7 @@ public class spawnBall : MonoBehaviour
         }
 
         GameObject go = Instantiate(prototype, transform.position, prototype.transform.rotation);
-        go.transform.SetParent(null);
+        go.transform.SetParent(projectileParent);
 
         try
         {
