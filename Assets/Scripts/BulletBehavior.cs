@@ -28,6 +28,7 @@ public class BulletBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Projectile destroyed on collision");
+            collision.gameObject.GetComponent<EnemyBehavior>().SendMessage("KilledByBullet");
             Destroy(gameObject);
         }
     }

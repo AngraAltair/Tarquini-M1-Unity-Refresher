@@ -41,6 +41,7 @@ public class SpawnEnemy : MonoBehaviour
         for (int i = 0; i < enemiesPerWave; i++)
         {
             GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(Random.Range(minX, maxX),1,Random.Range(spawnerPosition.z, maxZ)),transform.rotation, enemyParent);
+            newEnemy.GetComponent<EnemyBehavior>().SetRandomSpeed();
             enemies.Add(newEnemy);
             Debug.Log("Spawned enemy");
         }
