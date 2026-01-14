@@ -23,17 +23,18 @@ public class SpawnEnemy : MonoBehaviour
         enemyWave = 1;
         enemies = new List<GameObject>();
         spawnerPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        
-        SpawnEnemies();
+
+        StartCoroutine(SpawnEnemyWaves());
+        // SpawnEnemies();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemies.Count == 0 && enemyWave != enemyTotalWaves)
-        {
-            Debug.Log("Wave finished. Spawning more enemies.");
-        }
+        // if (enemies.Count == 0 && enemyWave != enemyTotalWaves)
+        // {
+        //     Debug.Log("Wave finished. Spawning more enemies.");
+        // }
     }
 
     void SpawnEnemies()
@@ -44,6 +45,30 @@ public class SpawnEnemy : MonoBehaviour
             newEnemy.GetComponent<EnemyBehavior>().SetRandomSpeed();
             enemies.Add(newEnemy);
             Debug.Log("Spawned enemy");
+        }
+    }
+
+    IEnumerator SpawnEnemyWaves()
+    {
+        while (enemyWave <= enemyTotalWaves)
+        {
+            // SpawnEnemies();
+            // enemyWave++;
+            // if (enemies.Count == 0) {
+            //     Debug.Log("Wave finished. Spawning more enemies in 5 seconds.");
+            //     yield return new WaitForSeconds(5);
+            // }
+            for (int i = 0; i < enemyTotalWaves; i++)
+            {
+                SpawnEnemies();
+                Debug.Log("Wave " + enemyWave + " spawned. Waiting for all enemies to be defeated.");
+                enemyWave++;
+
+                while (enemyParent.childCount > 0)
+                {
+                    yield return null;
+                }
+            }
         }
     }
 }

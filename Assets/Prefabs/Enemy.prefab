@@ -120,3 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4118cc5e89b9336499d5701c06874422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySpeed: 0
+  enemyMinSpeed: 0
+  enemyMaxSpeed: 0
+  walkOn: 0
