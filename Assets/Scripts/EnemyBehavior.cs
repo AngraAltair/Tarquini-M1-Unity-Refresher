@@ -42,10 +42,15 @@ public class EnemyBehavior : MonoBehaviour
 
     void Walk()
     {
-        if (walkOn)
+        if (walkOn && player != null && !isShot)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, 1, player.transform.position.z), enemySpeed * Time.deltaTime);
         }
+    }
+
+    void TurnWalkOff()
+    {
+        walkOn = false;
     }
 
     void ShotByBullet()
